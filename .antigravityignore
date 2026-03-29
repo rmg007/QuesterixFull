@@ -1,0 +1,132 @@
+# =============================================================================
+# TOKEN-SAVING IGNORE - QuesterixFull Workspace
+# Shared patterns for: .cursorignore, .codeiumignore, .antigravityignore
+# =============================================================================
+
+# -- Dependencies -------------------------------------------------------------
+**/node_modules/
+**/.pub-cache/
+**/.pub/
+**/.dart_tool/
+
+# -- Lock files (massive, zero value to AI) -----------------------------------
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+**/pubspec.lock
+
+# -- Build & dist output ------------------------------------------------------
+**/dist/
+**/build/
+**/.build/
+**/.buildlog/
+**/.next/
+**/out/
+**/admin-panel/dist/
+
+# -- Dart/Flutter codegen (regenerated, not hand-written) ---------------------
+**/*.g.dart
+**/*.freezed.dart
+**/*.mocks.dart
+**/*.gr.dart
+**/doc/api/
+
+# -- Supabase generated types (large, auto-generated) ------------------------
+**/database.types.utf8.ts
+**/database.types.ts
+
+# -- VitePress cache & output -------------------------------------------------
+**/.vitepress/dist/
+**/.vitepress/cache/
+
+# -- Test artifacts & reports -------------------------------------------------
+**/playwright-report/
+**/test-results/
+**/coverage/
+**/__checks__/
+**/__snapshots__/
+**/tests/__screenshots__/
+**/lighthouse-*.json
+**/.auth/
+**/.playwright/
+
+# -- Caches & tooling --------------------------------------------------------
+**/.wrangler/
+**/.supabase/
+**/.cache/
+**/.pytest_cache/
+**/.ruff_cache/
+**/__pycache__/
+**/*.pyc
+**/tools/bin/
+**/search.db
+
+# -- Cortex generated outputs ------------------------------------------------
+**/questerix-cortex/outputs/
+**/questerix-cortex/dist/
+
+# -- Logs & temp files --------------------------------------------------------
+**/*.log
+**/*.tmp
+**/tmp/
+**/logs/
+**/*_output.txt
+**/*_error.txt
+**/tsc_errors*.txt
+**/diff.txt
+**/*.diagnostic.md
+**/_gh_failures/
+
+# -- Secrets & env (never index) ----------------------------------------------
+**/.env
+**/.env.*
+**/.secrets*
+**/temp-secrets-*.json
+
+# -- IDE & agent noise --------------------------------------------------------
+**/.agent/
+**/.session/
+**/.claude/
+**/.aider*
+**/.gemini/antigravity/knowledge/
+
+# -- OS junk ------------------------------------------------------------------
+**/.DS_Store
+**/Thumbs.db
+
+# -- Media & binary (no value to AI) ------------------------------------------
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.ico
+**/*.svg
+**/*.mp4
+**/*.webm
+**/*.woff
+**/*.woff2
+**/*.ttf
+**/*.eot
+
+# -- Minified bundles ---------------------------------------------------------
+**/*.min.js
+**/*.min.css
+**/*.chunk.js
+**/*.chunk.css
+
+# -- Android/iOS build artifacts -----------------------------------------------
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+**/ios/Flutter/.last_build_id
+**/app.*.symbols
+**/app.*.map.json
+
+# -- IntelliJ / JetBrains -----------------------------------------------------
+**/.idea/
+**/*.iml
+**/*.ipr
+**/*.iws
+
+# -- Generated landing page assets --------------------------------------------
+**/public/assets/generated/

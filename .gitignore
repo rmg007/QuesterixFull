@@ -1,0 +1,147 @@
+# QuesterixFull Monorepo .gitignore
+
+# ===== SECURITY & SECRETS =====
+.env
+.env.*
+!.env.example
+!.env.development
+!.env.production
+.secrets
+.mcp_config.json
+.mcp_config.*.json
+secrets.env
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ===== NODE.JS & NPM =====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm
+.yarn-integrity
+.pnpm-debug.log*
+
+# ===== BUILD OUTPUTS =====
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+.parcel-cache/
+.vite/
+coverage/
+*.tgz
+*.tar.gz
+
+# ===== FLUTTER & DART =====
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+.fvm/
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+drift_schemas/
+
+# ===== SUPABASE =====
+supabase/.branches/
+supabase/.temp/
+
+# ===== LOGS & TEMP FILES =====
+logs/
+*.log
+*.log.*
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.tmp
+*.temp
+.temp/
+.tmp/
+
+# ===== IDE & EDITOR FILES =====
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== TESTING =====
+test-results/
+playwright-report/
+coverage/
+.nyc_output/
+junit.xml
+
+# ===== OS SPECIFIC =====
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Linux
+*~
+
+# ===== PROJECT SPECIFIC =====
+# Agent/AI tool caches
+.aider.tags.cache.v4/
+.claude/
+.cursor/
+.antigravity/
+.windsurf/
+.session/
+
+# Deployment logs
+deploy-*.log
+cortex_*.txt
+tests_output.json
+
+# Archive directories
+dist-archive/
+backup/
+
+# Wrangler
+.wrangler/
+
+# Husky
+.husky/_/
+
+# Dependency cruiser
+.dependency-cruiser.js
+
+# Flutter defines
+.flutter-defines.tmp
+
+# Package lock files (keep only npm for consistency)
+yarn.lock
+pnpm-lock.yaml
+
+# ===== ALLOW IMPORTANT FILES =====
+!.gitkeep
+!.gitignore
+!.github/
+!.vitepress/
+!.husky/pre-commit
+!.husky/commit-msg
