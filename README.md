@@ -1,6 +1,6 @@
 # QuesterixFull — Monorepo
 
-> **AI Agents:** Read `AI_WORKFLOW_SETUP.md` first. Run `supermemory_recall(query="project context")` before starting work.
+> **AI Agents:** Read `AI_WORKFLOW_SETUP.md` first. Check `Questerix/docs/LEARNING_LOG.md` for prevention rules before making changes.
 
 This is the root workspace containing all four Questerix projects. Each project is an independent repository with its own stack, deployment, and agent rules.
 
@@ -44,7 +44,7 @@ This workspace is fully configured for AI-assisted development across **4 IDEs**
 
 | Tool | Purpose |
 |------|---------|
-| `supermemory` | Persistent cross-session memory |
+| `LEARNING_LOG.md` | Prevention rules from past bugs |
 | `pare-git` | Structured git output (92% smaller than raw) |
 | `pare-npm` | Structured npm output (83% smaller) |
 | `pare-test` | Structured test results (80% smaller) |

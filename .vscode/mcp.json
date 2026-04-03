@@ -1,11 +1,5 @@
 {
   "servers": {
-    "supermemory": {
-      "url": "https://mcp.supermemory.ai/mcp",
-      "headers": {
-        "Authorization": "Bearer sm_CgG5QDcvgwgL4tecVjDo5h_HCylfugrTBTbIwuuuOhytZqUJqnESpYkZZnGsaCKZWKekgGxSWhmLIlfNnTVHTDv"
-      }
-    },
     "pare-git": {
       "command": "npx",
       "args": ["-y", "@paretools/git"]

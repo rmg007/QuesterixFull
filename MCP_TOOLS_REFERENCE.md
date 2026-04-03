@@ -4,30 +4,28 @@
 
 ---
 
-## SuperMemory
+## Learning Log (Prevention Rules)
 
-**Purpose:** Persistent context across all IDEs and sessions
+**Purpose:** Prevent repeated bugs by documenting patterns and solutions
 
 ### Tools
 
-| Tool | Use When | Example |
-|------|----------|---------|
-| `supermemory_memory` | Storing significant decisions | After architecture changes, API decisions, or user preferences |
-| `supermemory_recall` | Retrieving past context | When exploring a new area or need historical decisions |
-| `supermemory_whoAmI` | Confirming user identity | At session start to verify correct profile |
+| Action | Use When | Location |
+|--------|----------|----------|
+| Read LEARNING_LOG | Before making changes | `docs/LEARNING_LOG.md` |
+| Add prevention rule | After fixing a bug | `docs/LEARNING_LOG.md` |
+| Check cross-project rules | Working on shared patterns | `Questerix/docs/LEARNING_LOG.md` |
 
 ### Examples
 
-```javascript
-// Store a decision
-supermemory_memory({
-  content: "We decided to use Riverpod over Bloc for state management in the student app"
-})
+```markdown
+# Before making changes, check for relevant prevention rules:
+# Read docs/LEARNING_LOG.md and search for related patterns
 
-// Retrieve context
-supermemory_recall({
-  query: "state management decisions flutter"
-})
+# After fixing a bug, add a prevention rule:
+## [2026-03-29] SQLite Migration Fix
+- **Root Cause**: Missing default value for non-nullable column
+- **Prevention Rule**: ALWAYS use withDefault() for non-nullable columns in Drift migrations
 ```
 
 ---
@@ -216,7 +214,7 @@ Date:   Mon Mar 29 09:00:00 2026
 | Install packages | `pare-npm_install` | `npm install` |
 | Run tests | `pare-test_run` | `npm test` |
 | Check types | `pare-typescript_check` | `tsc` |
-| Store context | `supermemory_memory` | (no equivalent) |
+| Prevention rules | `LEARNING_LOG.md` | (no equivalent) |
 
 ### Still Use Raw CLI
 
@@ -263,7 +261,7 @@ Date:   Mon Mar 29 09:00:00 2026
 1. **Git Operations**: NEVER use direct shell commands... ALWAYS use `pare-git`
 2. **Node/npm**: NEVER use direct shell commands... ALWAYS use `pare-npm` and `pare-test`
 3. **TypeScript**: ALWAYS use `pare-typescript_check`
-4. **Memory**: PROACTIVELY use `supermemory_memory`
+4. **Learning Log**: Check `docs/LEARNING_LOG.md` before changes, add rules after fixes
 ```
 
 ---

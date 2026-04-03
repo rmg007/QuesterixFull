@@ -58,7 +58,7 @@ Each IDE has a **global config** that applies to all projects:
 
 | Tool | Purpose | Token Reduction | Command |
 |------|---------|-----------------|---------|
-| **supermemory** | Persistent cross-IDE memory | N/A | `supermemory_memory`, `supermemory_recall` |
+| **LEARNING_LOG** | Prevention rules from past bugs | N/A | Check `docs/LEARNING_LOG.md` |
 | **pare-git** | Structured git operations | ~92% | `pare-git_status`, `pare-git_log`, `pare-git_diff` |
 | **pare-npm** | Structured npm operations | ~83% | `pare-npm_install`, `pare-npm_list`, `pare-npm_run` |
 | **pare-test** | Structured test output | ~80% | `pare-test_run`, `pare-test_coverage` |
@@ -230,7 +230,6 @@ All rules use **strict glob targeting** to minimize token usage. Rules only load
 
 | Rule | globs | alwaysApply | Purpose |
 |------|-------|-------------|---------|
-| `supermemory.mdc` | `**/*` | `true` | Quick reminder to use memory |
 | `tool-preference.mdc` | `**/*` | `true` | Quick reminder to use MCP tools |
 
 These are **lean** (20 lines each) — just triggers with quick examples.
@@ -249,7 +248,7 @@ These are **lean** (20 lines each) — just triggers with quick examples.
 **Token Savings:** Scoped rules save **thousands of tokens per prompt** by not loading irrelevant tech rules.
 
 Example: When editing a Flutter file:
-- ✅ Loads: `supermemory.mdc` (20 lines) + `tool-preference.mdc` (20 lines) + `flutter.mdc` (50 lines)
+- ✅ Loads: `tool-preference.mdc` (20 lines) + `flutter.mdc` (50 lines)
 - ❌ Ignores: `react-typescript.mdc`, `vitepress.mdc`, `supabase.mdc` (150+ lines saved)
 
 ### Windsurf Rules (`.windsurf/rules/`)
@@ -258,7 +257,6 @@ Same glob-scoped architecture for Windsurf IDE:
 
 | Rule | globs | When Active |
 |------|-------|-------------|
-| `supermemory.md` | `**/*` | All files |
 | `tool-preference.md` | `**/*` | All files |
 | `react-typescript.md` | React/TS paths | Questerix/Landing |
 | `flutter.md` | Dart paths | Student app |
@@ -283,7 +281,7 @@ To optimize token usage and ensure structured output, all agents MUST follow the
 1.  **Git Operations**: NEVER use direct shell commands like `git status`, `git log`, or `git diff`. ALWAYS use the `pare-git` MCP tools (e.g., `pare-git_status`, `pare-git_log`).
 2.  **Node/npm**: NEVER use direct shell commands like `npm install` or `npm test`. ALWAYS use `pare-npm` and `pare-test` MCP tools.
 3.  **TypeScript**: ALWAYS use `pare-typescript_check` instead of direct `tsc` shell commands.
-4.  **Memory**: PROACTIVELY use `supermemory_memory` to store significant decisions and `supermemory_recall` to retrieve past context.
+4.  **Learning Log**: After fixing bugs, add prevention rules to `docs/LEARNING_LOG.md` to prevent recurrence.
 
 These tools reduce token consumption by 80-95% compared to raw terminal output.
 ```
@@ -334,13 +332,13 @@ Runs after every daily work period:
 
 ---
 
-## Memory Storage
+## Prevention Rules
 
-### What's Stored in SuperMemory
+### What's Stored in LEARNING_LOG
 
-The following critical knowledge is stored via `supermemory_memory`:
+The following critical knowledge is stored in `docs/LEARNING_LOG.md`:
 
-1. **Workspace Overview** — 4 projects, their purposes, deployment targets
+1. **Bug Prevention Rules** — Patterns that caused bugs and how to avoid them
 2. **IDE & MCP Setup** — All configured tools and ignore files
 3. **Questerix Admin Panel** — Stack, feature freeze rule, testing tiers
 4. **Student App** — Flutter rules, offline-first, Drift migrations
@@ -357,9 +355,10 @@ The following critical knowledge is stored via `supermemory_memory`:
 Any AI in any IDE can recall this context:
 
 ```
-supermemory_recall(query="Flutter student app offline-first rules")
-supermemory_recall(query="admin panel testing requirements")
-supermemory_recall(query="feature freeze constraint")
+# Check LEARNING_LOG for relevant prevention rules
+grep -i "flutter" docs/LEARNING_LOG.md
+grep -i "migration" docs/LEARNING_LOG.md
+grep -i "offline" docs/LEARNING_LOG.md
 ```
 
 ---
@@ -386,7 +385,6 @@ supermemory_recall(query="feature freeze constraint")
 **Cursor** (`.cursor/rules/`):
 | Rule | globs | Lines | Purpose |
 |------|-------|-------|---------|
-| `supermemory.mdc` | `**/*` | ~20 | Memory trigger |
 | `tool-preference.mdc` | `**/*` | ~20 | MCP tools trigger |
 | `react-typescript.mdc` | React paths | ~60 | React/TS rules |
 | `flutter.mdc` | Dart paths | ~50 | Flutter rules |
@@ -414,9 +412,9 @@ supermemory_recall(query="feature freeze constraint")
 
 **Solution:** Restart the IDE. MCP servers are loaded at startup.
 
-### Issue: SuperMemory recall returns nothing
+### Issue: Can't find prevention rules
 
-**Cause:** Documents are still indexing (`"status": "indexing"`).
+**Cause:** LEARNING_LOG might not have relevant entries yet.
 
 **Solution:** Wait 2-3 minutes after storing memories before attempting recall.
 
@@ -438,7 +436,7 @@ supermemory_recall(query="feature freeze constraint")
 
 ```bash
 # Check MCP status (in any IDE)
-# Look for: pare-git, pare-npm, pare-test, pare-typescript, supermemory
+# Look for: pare-git, pare-npm, pare-test, pare-typescript
 
 # Use structured git (instead of `git log`)
 pare-git_log
@@ -449,11 +447,8 @@ pare-npm_install
 # Use structured tests (instead of `npm test`)
 pare-test_run
 
-# Store context
-supermemory_memory(content="Important decision about architecture")
-
-# Retrieve context
-supermemory_recall(query="architecture decisions")
+# Check prevention rules before making changes
+# Read docs/LEARNING_LOG.md for relevant patterns
 ```
 
 ### Task Tier Shortcuts
@@ -479,7 +474,7 @@ supermemory_recall(query="architecture decisions")
 
 ### When Adding a New IDE
 
-1. Add SuperMemory + 4 Pare tools to its global MCP config
+1. Add 4 Pare tools to its global MCP config
 2. Copy `.cursorignore` → IDE's ignore format
 3. Add reference to `AGENTS.md` and `.github/copilot-instructions.md`
 
@@ -490,14 +485,14 @@ supermemory_recall(query="architecture decisions")
 3. Create `.vscode/settings.json` with `search.exclude`
 4. Create `AGENTS.md` with Tool Selection section
 5. Create `.github/copilot-instructions.md`
-6. Store project context in SuperMemory
+6. Document project-specific rules in LEARNING_LOG
 
 ### When Updating MCP Tools
 
 1. Update all 4 global IDE configs
 2. Update all 4 per-project `.vscode/mcp.json` files
 3. Update this documentation
-4. Store update in SuperMemory
+4. Document in LEARNING_LOG if relevant
 
 ### When Adding a New Tech Stack
 
@@ -507,7 +502,7 @@ supermemory_recall(query="architecture decisions")
 4. Set `alwaysApply: false`
 5. Keep rule under 60 lines (tech-specific details only)
 6. Reference full docs in `AGENTS.md`
-7. Store in SuperMemory: `supermemory_memory(content="new {tech} rules")`
+7. Document any prevention rules in LEARNING_LOG
 
 ### Glob Scoping Best Practices
 
@@ -532,4 +527,4 @@ supermemory_recall(query="architecture decisions")
 - **Last Full Review:** 2026-03-29  
 - **Next Review:** When adding new MCP tools or projects
 
-For questions about this setup, check `supermemory_recall(query="AI workflow setup")` in any IDE.
+For questions about this setup, read this document and check `docs/LEARNING_LOG.md` for prevention rules.

@@ -34,7 +34,7 @@ Runs after every daily work period (TIER M & L):
 | `npm install` | `pare-npm_install` | 83% |
 | `npm test` | `pare-test_run` | 80% |
 | `tsc` | `pare-typescript_check` | Significant |
-| Manual context | `supermemory_memory`, `supermemory_recall` | 100% |
+| Prevention rules | Check `LEARNING_LOG.md` | N/A |
 
 ---
 
@@ -50,7 +50,7 @@ Rules only load when editing matching files — saves thousands of tokens:
 | `.cursor/rules/playwright.mdc` | E2E test files |
 | `.cursor/rules/vitepress.mdc` | Help docs |
 
-Global rules (`supermemory.mdc`, `tool-preference.mdc`) stay lean (~20 lines each).
+Global rules (`tool-preference.mdc`) stay lean (~20 lines each).
 
 ---
 
@@ -123,8 +123,8 @@ Biggest exclusions: `node_modules`, `package-lock.json`, `*.g.dart`, `*.freezed.
 ## Emergency Contacts
 
 - **Can't find MCP tools?** Restart IDE
-- **SuperMemory recall empty?** Wait 2-3 min for indexing
-- **Forgot constraints?** Check `supermemory_recall(query="critical constraints")`
+- **Repeated bugs?** Check `docs/LEARNING_LOG.md` for prevention rules
+- **Forgot constraints?** Check `AI_WORKFLOW_SETUP.md` critical constraints section
 - **Need full docs?** Read `AI_WORKFLOW_SETUP.md`
 
 ---
