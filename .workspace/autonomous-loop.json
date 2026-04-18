@@ -1,0 +1,23 @@
+{
+  "cron": "0 19 * * *",
+  "master_plan": ".workspace/plans/PROJECT-COMPLETION-MASTER.md",
+  "max_iterations": 50,
+  "time_budget_hours": 8,
+  "token_budget_per_chat": 180000,
+  "agent_chain": [
+    "auto-customizer",
+    "architect",
+    "skeptic",
+    "planner",
+    "coordinator",
+    "fixer",
+    "reviewer",
+    "releaser"
+  ],
+  "full_skill_suite": true,
+  "auto_new_chat_on_token_budget": true,
+  "stop_on_completion": true,
+  "stop_on_admin_guard": true,
+  "log_level": "info",
+  "dry_run": false
+}

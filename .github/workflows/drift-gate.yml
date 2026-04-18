@@ -1,0 +1,106 @@
+name: Drift Gate
+
+on:
+  pull_request:
+    branches: [master, main]
+    paths:
+      - 'Questerix/packages/core/src/types/database.ts'
+      - 'Questerix/packages/core/package.json'
+      - 'questerix-student-app/lib/data/generated/supabase_types.dart'
+      - 'questerix-student-app/pubspec.yaml'
+      - '.github/workflows/drift-gate.yml'
+
+jobs:
+  ts-type-drift:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Skip if no credentials (fork PRs)
+        run: |
+          if [ -z "${SUPABASE_ACCESS_TOKEN}" ]; then
+            echo "SUPABASE_ACCESS_TOKEN not set — skipping (fork PR or machine without DB credentials)."
+            exit 0
+          fi
+      - name: Install Supabase CLI
+        run: npm install -g supabase@2
+      - name: Regenerate TS types
+        run: supabase gen types typescript --project-id ${{ secrets.SUPABASE_PROJECT_ID }} > /tmp/database_fresh.ts
+      - name: Normalize formatting
+        run: npx prettier --write /tmp/database_fresh.ts
+      - name: Check for drift
+        id: diff
+        run: |
+          if ! diff -q /tmp/database_fresh.ts Questerix/packages/core/src/types/database.ts > /dev/null 2>&1; then
+            echo "DRIFT_DETECTED=true" >> $GITHUB_OUTPUT
+            diff /tmp/database_fresh.ts Questerix/packages/core/src/types/database.ts || true
+            exit 1
+          fi
+      - name: Post PR comment on drift
+        if: failure() && steps.diff.outputs.DRIFT_DETECTED == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚠️ **TS type drift detected** in `Questerix/packages/core/src/types/database.ts`.\n\nRun `npm run typegen` from `Questerix/packages/core/` and commit the updated snapshot.'
+            })
+
+  dart-type-drift:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Skip if no credentials (fork PRs)
+        run: |
+          if [ -z "${SUPABASE_ACCESS_TOKEN}" ]; then
+            echo "SUPABASE_ACCESS_TOKEN not set — skipping (fork PR or machine without DB credentials)."
+            exit 0
+          fi
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: questerix-student-app
+      - name: Install Supabase CLI
+        run: npm install -g supabase@2
+      - name: Regenerate Dart types
+        run: supabase gen types dart --project-id ${{ secrets.SUPABASE_PROJECT_ID }} --schema public > /tmp/supabase_types_fresh.dart
+      - name: Normalize formatting
+        run: dart format /tmp/supabase_types_fresh.dart
+      - name: Check for drift
+        id: diff
+        run: |
+          if ! diff -q /tmp/supabase_types_fresh.dart questerix-student-app/lib/data/generated/supabase_types.dart > /dev/null 2>&1; then
+            echo "DRIFT_DETECTED=true" >> $GITHUB_OUTPUT
+            diff /tmp/supabase_types_fresh.dart questerix-student-app/lib/data/generated/supabase_types.dart || true
+            exit 1
+          fi
+      - name: Post PR comment on drift
+        if: failure() && steps.diff.outputs.DRIFT_DETECTED == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚠️ **Dart type drift detected** in `questerix-student-app/lib/data/generated/supabase_types.dart`.\n\nRun `./scripts/regen_types.sh` from `questerix-student-app/` and commit the updated snapshot.'
+            })
+
+  token-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Skip if tokens.json not yet committed
+        run: |
+          if [ ! -f tokens.json ]; then
+            echo "tokens.json not found — token gate inactive (Task 26 not yet shipped)."
+            exit 0
+          fi
+          # TODO Task 26: add regen command and diff here
