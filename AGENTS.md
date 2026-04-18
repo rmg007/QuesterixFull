@@ -21,12 +21,12 @@ These rules apply to **all AI coding agents** working on any Questerix project:
 
 ## 📚 Documentation (Read First)
 
-| Document                 | Purpose                      | When to Read                  |
-| ------------------------ | ---------------------------- | ----------------------------- |
-| `AI_WORKFLOW_SETUP.md`   | Complete IDE/MCP setup guide | Onboarding, troubleshooting   |
-| `MCP_TOOLS_REFERENCE.md` | All MCP tools with examples  | When using git/npm/test/tools |
-| `QUICK_REFERENCE.md`     | One-page daily reference     | Quick lookups, print it out   |
-| `../QUICK_REFERENCE.md`  | Multi-project quick ref      | Working across multiple apps  |
+| Document              | Purpose                        | When to Read               |
+| --------------------- | ------------------------------ | -------------------------- |
+| `README.md`           | Project overview & setup       | Onboarding                 |
+| `CURRENT_PLAN.md`     | Active plan pointer for agents | Start of every session     |
+| `PLANS/INDEX.md`      | All plans — active & archived  | Before creating a new plan |
+| `.claude/AGENT_RULES.md` | Mandatory agent rules       | Always                     |
 
 **All AI agents MUST read `docs/LEARNING_LOG.md` for prevention rules before making changes.**
 
