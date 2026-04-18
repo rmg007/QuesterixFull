@@ -2,7 +2,19 @@
 
 | # | Name | Type | Status | Tokens | Created | Completed |
 |---|------|------|--------|--------|---------|-----------|
-| — | *No active plans* | — | — | — | — | — |
+| 001 | beyond-perfection-roadmap | [ARCH] | ACTIVE | ~45k | 2026-04-17 | — |
+| 002 | architecture-excellence | [FEATURE] | ACTIVE | ~6k | 2026-04-17 | — |
+| 003 | performance-excellence | [FEATURE] | ACTIVE | ~6k | 2026-04-17 | — |
+| 004 | resilience-excellence | [FEATURE] | ACTIVE | ~5k | 2026-04-17 | — |
+| 005 | observability-excellence | [FEATURE] | ACTIVE | ~5k | 2026-04-17 | — |
+| 006 | security-excellence | [FEATURE] | ACTIVE | ~6k | 2026-04-17 | — |
+| 007 | accessibility-excellence | [FEATURE] | ACTIVE | ~6k | 2026-04-17 | — |
+| 008 | ux-polish-excellence | [FEATURE] | ACTIVE | ~5k | 2026-04-17 | — |
+| 009 | ai-capability-excellence | [FEATURE] | ACTIVE | ~5k | 2026-04-17 | — |
+| 010 | offline-sync-excellence | [FEATURE] | ACTIVE | ~5k | 2026-04-17 | — |
+| 011 | test-quality-excellence | [FEATURE] | ACTIVE | ~6k | 2026-04-17 | — |
+| 012 | dx-excellence | [FEATURE] | ACTIVE | ~6k | 2026-04-17 | — |
+| 013 | scale-excellence | [FEATURE] | ACTIVE | ~5k | 2026-04-17 | — |
 
 ## Plan Status Key
 - **ACTIVE** — In progress, can be resumed
@@ -28,4 +40,22 @@ Plans are numbered sequentially (001, 002, 003...). File: `PLANS/NNN-slug.md`
 
 ---
 
+## Dimension Plan Map
+
+Each excellence dimension is covered by one primary plan:
+
+- **Dimension 1 (Architecture)** → Plan 002 (Architecture Excellence)
+- **Dimension 2 (Performance)** → Plan 003 (Performance Excellence)
+- **Dimension 3 (Resilience)** → Plan 004 (Resilience Excellence)
+- **Dimension 4 (Observability)** → Plan 005 (Observability Excellence)
+- **Dimension 5 (Security)** → Plan 006 (Security Excellence)
+- **Dimension 6 (Accessibility)** → Plan 007 (Accessibility Excellence)
+- **Dimension 7 (UX Polish)** → Plan 008 (UX Polish Excellence)
+- **Dimension 8 (AI Depth)** → Plan 009 (AI Capability Excellence)
+- **Dimension 9 (Offline & Sync)** → Plan 010 (Offline & Sync Excellence)
+- **Dimension 10 (Test Quality)** → Plan 011 (Test Quality Excellence)
+- **Dimension 11 (Developer Experience)** → Plan 012 (DX Excellence)
+- **Dimension 12 (Scale Horizon)** → Plan 013 (Scale Excellence)
+
 *Last updated: 2026-04-17*
+
