@@ -1,0 +1,12 @@
+[submodule "Questerix"]
+	path = Questerix
+	url = https://github.com/rmg007/Questerix.git
+[submodule "questerix-student-app"]
+	path = questerix-student-app
+	url = https://github.com/rmg007/questerix-student-app.git
+[submodule "questerix-help-docs"]
+	path = questerix-help-docs
+	url = https://github.com/rmg007/questerix-help-docs.git
+[submodule "questerix-landing-pages"]
+	path = questerix-landing-pages
+	url = https://github.com/rmg007/questerix-landing-pages.git
